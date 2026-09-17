@@ -28,6 +28,9 @@ export type HassFirstWeekday =
   | "saturday"
   | "sunday";
 
+/** Same enum HA's own frontend uses for the user's clock-format profile setting. */
+export type HassTimeFormat = "language" | "system" | "12" | "24";
+
 export interface HassEntity {
   entity_id: string;
   device_id?: string | null;
@@ -54,6 +57,7 @@ export interface HomeAssistant {
   locale: {
     language: string;
     first_weekday?: HassFirstWeekday;
+    time_format?: HassTimeFormat;
   };
   localize(key: string, params?: Record<string, string>): string;
   config: { state: string; time_zone?: string };

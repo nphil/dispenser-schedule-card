@@ -1,6 +1,6 @@
 {
   "name": "dispenser-schedule-card",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "description": "Custom HomeAssistant card to control dispenser schedules",
   "main": "dist/dispenser-schedule-card.mjs",
   "author": "Cristian Chelu <cristianchelu@gmail.com>",
@@ -20,18 +20,17 @@
     "fmt": "prettier --cache --write .",
     "prepare": "husky"
   },
-  "dependencies": {},
   "devDependencies": {
-    "home-assistant-js-websocket": "9.6.0",
-    "lit": "3.3.2",
-    "@rollup/plugin-node-resolve": "16.0.3",
-    "rollup-plugin-import-css": "4.2.1",
     "@rollup/plugin-json": "6.1.0",
+    "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-terser": "1.0.0",
     "@rollup/plugin-typescript": "12.3.0",
+    "home-assistant-js-websocket": "9.6.0",
     "husky": "9.1.7",
+    "lit": "^3.3.2",
     "prettier": "3.8.3",
     "rollup": "4.60.2",
+    "rollup-plugin-import-css": "4.2.1",
     "tslib": "2.8.1",
     "typescript": "6.0.3"
   }

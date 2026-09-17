@@ -231,8 +231,36 @@ class DispenserScheduleCard extends LitElement {
     return this._device.filterScheduleForToday(this._schedules);
   }
 
+  /**
+   * Renders a schedule entry's clock time honoring the user's HA profile
+   * "Time Format" setting (`this._hass.locale.time_format`): "12" / "24"
+   * force a format, "language" follows the UI language's convention, and
+   * "system" defers to the browser's own locale/format.
+   */
   renderTimeString(entry: ScheduleEntry): string {
-    return `${entry.hour}:${entry.minute.toString().padStart(2, "0")}`;
+    const { language, time_format: timeFormat } = this._hass.locale;
+    const date = new Date(2000, 0, 1, entry.hour, entry.minute);
+    let locale: string | undefined = language;
+    let hour12: boolean | undefined;
+    switch (timeFormat) {
+      case "12":
+        hour12 = true;
+        break;
+      case "24":
+        hour12 = false;
+        break;
+      case "system":
+        locale = undefined;
+        break;
+      case "language":
+      default:
+        break;
+    }
+    return new Intl.DateTimeFormat(locale, {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12,
+    }).format(date);
   }
 
   /** Non-edit primary line: "HH:MM" or "HH:MM ⸱ Label". */

@@ -82,6 +82,11 @@ Each device family has its own minimal configuration. Pick yours from
 | `alternate_unit`      | _Optional_   | Display a secondary unit of measurement, with a conversion factor — see [`alternate_unit` options](#alternate_unit-options).                            |
 | `display`             | _Optional_   | Per-status display overrides — see [Display customization](#display-customization).                                                                     |
 
+Displayed schedule times follow the **Time Format** in your Home Assistant
+profile (Settings → People → your user → General): `12 hour` shows times
+like `5:25 PM`, `24 hour` shows `17:25`, and `Auto` follows the browser
+language's convention.
+
 ### `alternate_unit` options
 
 | Name                  | Required     | Description                                                                                    |
