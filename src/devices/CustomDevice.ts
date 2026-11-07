@@ -13,6 +13,7 @@ import {
   isEntryStatus,
 } from "../types/common";
 import { HomeAssistant } from "../types/ha";
+import { entityDisplayName } from "../entityName";
 
 export interface ServiceCallActionConfig {
   add?: string;
@@ -104,10 +105,10 @@ export default class CustomDevice extends Device<CustomDeviceConfig> {
   }
 
   getDisplayInfo(): DeviceDisplayInfo {
-    const state =
-      this.hass.states[this.deviceConfig.switch ?? this.deviceConfig.entity];
+    const displayEntity = this.deviceConfig.switch ?? this.deviceConfig.entity;
+    const state = this.hass.states[displayEntity];
     return {
-      name: state?.attributes.friendly_name,
+      name: entityDisplayName(this.hass, displayEntity),
       icon: state?.attributes.icon,
     };
   }

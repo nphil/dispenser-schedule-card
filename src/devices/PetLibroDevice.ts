@@ -15,6 +15,7 @@ import {
 import { HomeAssistant } from "../types/ha";
 import { ALL_WEEKDAYS, sortWeekdays, Weekday } from "../types/weekday";
 import localize from "../localization";
+import { entityDisplayName } from "../entityName";
 
 interface PetlibroScheduleEntry {
   /** Petlibro ID */
@@ -368,7 +369,7 @@ export default class PetLibroDevice extends Device<PetLibroDeviceConfig> {
     if (!entityId) return {};
     const state = this.hass.states[entityId];
     return {
-      name: state?.attributes.friendly_name,
+      name: entityDisplayName(this.hass, entityId),
       icon: state?.attributes.icon,
     };
   }

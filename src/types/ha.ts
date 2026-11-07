@@ -60,6 +60,12 @@ export interface HomeAssistant {
     time_format?: HassTimeFormat;
   };
   localize(key: string, params?: Record<string, string>): string;
+  /** Home Assistant 2026.4+: the display name the built-in cards use. */
+  formatEntityName?(
+    stateObj: HassState,
+    config?: { type: "entity" | "device" | "area" | "floor" }[],
+    options?: { separator?: string }
+  ): string | undefined;
   config: { state: string; time_zone?: string };
 }
 

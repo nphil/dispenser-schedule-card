@@ -9,6 +9,7 @@ import {
   GlobalToggleInfo,
   ScheduleEntry,
 } from "../types/common";
+import { entityDisplayName } from "../entityName";
 
 const MAX_ENTRIES = 10;
 const ENTRY_REGEX =
@@ -98,7 +99,7 @@ export default class XiaomiSmartPetFeeder2 extends Device<XiaomiSmartPetFeeder2D
   getDisplayInfo(): DeviceDisplayInfo {
     const state = this.hass.states[this.deviceConfig.entity];
     return {
-      name: state?.attributes.friendly_name,
+      name: entityDisplayName(this.hass, this.deviceConfig.entity),
       icon: state?.attributes.icon,
     };
   }
